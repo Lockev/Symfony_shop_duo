@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\CartContent;
 use App\Entity\Product;
+use App\Form\CartContentType;
 use App\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,5 +58,39 @@ class ProductController extends AbstractController
       'products' => $products,
       'form_new' => $form->createView()
     ]);
+  }
+
+  /**
+   * @Route("/product/{id}", name="one_product")
+   */
+  public function product(Product $product = null, Request $request, TranslatorInterface $translator)
+  {
+    if ($product != null) {
+
+      $cartContent = new CartContent($product);
+      $form = $this->createForm(CartContentType::class, $cartContent);
+
+      $em = $this->getDoctrine()->getManager();
+
+      $form->handleRequest($request);
+
+      if ($form->isSubmitted() && $form->isValid()) {
+        if ($cartContent->getStock() > $cartContent->getQte()) {
+          $em->persist($cartContent);
+          $em->flush();
+          $this->addFlash('success', $translator->trans('flash.success.productAddedToCart'));
+        } else {
+          $this->addFlash('danger', $translator->trans('flash.error.productStock'));
+        }
+      }
+
+      return $this->render('product/product.html.twig', [
+        'product' => $product,
+        'form_cart' => $form->createView()
+      ]);
+    } else {
+      $this->addFlash("danger", $translator->trans('flash.error.productMissing'));
+      return $this->redirectToRoute('product');
+    }
   }
 }

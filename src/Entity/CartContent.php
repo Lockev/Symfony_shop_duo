@@ -9,85 +9,91 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CartContent
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="cartContents")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $product;
+  public function __construct($product)
+  {
+    $this->setProduct($product);
+    $this->setCreatedAt(new \DateTime());
+  }
+  /**
+   * @ORM\Id()
+   * @ORM\GeneratedValue()
+   * @ORM\Column(type="integer")
+   */
+  private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Cart", inversedBy="cartContents")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $cart;
+  /**
+   * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="cartContents")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $product;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $quantity;
+  /**
+   * @ORM\ManyToOne(targetEntity="App\Entity\Cart", inversedBy="cartContents")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $cart;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
+  /**
+   * @ORM\Column(type="integer")
+   */
+  private $quantity;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+  /**
+   * @ORM\Column(type="datetime")
+   */
+  private $createdAt;
 
-    public function getProduct(): ?Product
-    {
-        return $this->product;
-    }
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
 
-    public function setProduct(?Product $product): self
-    {
-        $this->product = $product;
+  public function getProduct(): ?Product
+  {
+    return $this->product;
+  }
 
-        return $this;
-    }
+  public function setProduct(?Product $product): self
+  {
+    $this->product = $product;
 
-    public function getCart(): ?Cart
-    {
-        return $this->cart;
-    }
+    return $this;
+  }
 
-    public function setCart(?Cart $cart): self
-    {
-        $this->cart = $cart;
+  public function getCart(): ?Cart
+  {
+    return $this->cart;
+  }
 
-        return $this;
-    }
+  public function setCart(?Cart $cart): self
+  {
+    $this->cart = $cart;
 
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
+    return $this;
+  }
 
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
+  public function getQuantity(): ?int
+  {
+    return $this->quantity;
+  }
 
-        return $this;
-    }
+  public function setQuantity(int $quantity): self
+  {
+    $this->quantity = $quantity;
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
+    return $this;
+  }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
+  public function getCreatedAt(): ?\DateTimeInterface
+  {
+    return $this->createdAt;
+  }
 
-        return $this;
-    }
+  public function setCreatedAt(\DateTimeInterface $createdAt): self
+  {
+    $this->createdAt = $createdAt;
+
+    return $this;
+  }
 }

@@ -23,7 +23,7 @@
       <tbody>
         {% for product in products %}
           <tr>
-            <td class="align-middle"><a href="{{ path('product', {'id':product.id}) }}">{{ product.name }}</a></td>
+            <td class="align-middle"><a href="{{ path('one_product', {'id':product.id}) }}">{{ product.name }}</a></td>
             
             <td class="align-middle">{{ product.description }}</td>
             <td class="align-middle">{{ product.price }}€</td>
