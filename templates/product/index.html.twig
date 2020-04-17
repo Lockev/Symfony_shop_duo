@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProduitController!{% endblock %}
+
+{% block body %}
+<style>
+</style>
+
+<div class="container">
+
+  <h1>{{ 'produit.titre'|trans }}</h1>
+  {% if products is not empty %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{{ 'name'|trans }}</th>
+          <th>{{ 'description'|trans }}</th>
+          <th>{{ 'price'|trans }}</th>
+          <th>{{ 'stock'|trans }}</th>
+          <th>{{ 'picture'|trans }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          <tr>
+            <td class="align-middle"><a href="{{ path('product', {'id':product.id}) }}">{{ product.name }}</a></td>
+            
+            <td class="align-middle">{{ product.description }}</td>
+            <td class="align-middle">{{ product.price }}€</td>
+            <td class="align-middle">{{ product.stock }}</td>
+            <td class="align-middle"><img src="{{asset('/uploads/'~ product.picture)}}" class="img-thumbnail" style="height:120px"></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Il n'y a aucun produits.</p>
+  {% endif %}
+  
+
+  {% if is_granted('ROLE_ADMIN') %}
+  <hr>
+  <h1> Ajouter un produit </h1>
+    {{ form_start(form_new) }}
+    {{ form_end(form_new) }}
+  {% endif %}
+</div>
+{% endblock %}
+
