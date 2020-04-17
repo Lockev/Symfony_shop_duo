@@ -20,11 +20,12 @@ class Cart
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="carts")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $purchaseDate;
 
@@ -65,7 +66,7 @@ class Cart
         return $this->purchaseDate;
     }
 
-    public function setPurchaseDate(?\DateTimeInterface $purchaseDate): self
+    public function setPurchaseDate(\DateTimeInterface $purchaseDate): self
     {
         $this->purchaseDate = $purchaseDate;
 
