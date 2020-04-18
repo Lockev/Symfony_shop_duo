@@ -25,23 +25,24 @@ class Cart
     private $user;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $purchaseDate;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $state;
+    private $state = false;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CartContent", mappedBy="cart", orphanRemoval=true)
      */
     private $cartContents;
 
-    public function __construct()
+    public function __construct($user)
     {
         $this->cartContents = new ArrayCollection();
+        $this->setUser($user);
     }
 
     public function getId(): ?int

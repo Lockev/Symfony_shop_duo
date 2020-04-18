@@ -17,8 +17,17 @@
   <h2>{{ 'cart.add'|trans }}</h2>
 </div>
 
-  {{ form_start(form_cart) }}
-  {{ form_end(form_cart) }}
+  {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    {{ form_start(form_cart) }}
+    {{ form_end(form_cart) }}
+  {% endif %}
+
+  {% if is_granted("ROLE_ADMIN") %}
+    <h2>Modifier un produit</h2>
+    {{ form(form_update) }}
+
+    <a href="{{path('delete_product', {'id': product.id})}}" >Delete</a>
+  {% endif %}
 
 </div>
 {% endblock %}

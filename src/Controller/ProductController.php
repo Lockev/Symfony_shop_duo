@@ -7,9 +7,11 @@ use App\Entity\Product;
 use App\Form\CartContentType;
 use App\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  *  @Route("/{_locale}")
@@ -66,31 +68,65 @@ class ProductController extends AbstractController
   public function product(Product $product = null, Request $request, TranslatorInterface $translator)
   {
     if ($product != null) {
-
-      $cartContent = new CartContent($product);
-      $form = $this->createForm(CartContentType::class, $cartContent);
+      if ($this->getUser() != null) {
+        $userCart = $this->getUser()->getActualCart();
+      } else {
+        $userCart = null;
+      }
+      $form2 = $this->createForm(ProductType::class, $product);
 
       $em = $this->getDoctrine()->getManager();
 
-      $form->handleRequest($request);
+      $form2->handleRequest($request);
 
+
+      $cartContent = new CartContent($product, $userCart);
+      $form = $this->createForm(CartContentType::class, $cartContent);
+      $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid()) {
-        if ($cartContent->getStock() > $cartContent->getQte()) {
-          $em->persist($cartContent);
-          $em->flush();
-          $this->addFlash('success', $translator->trans('flash.success.productAddedToCart'));
-        } else {
-          $this->addFlash('danger', $translator->trans('flash.error.productStock'));
-        }
+        // if ($cartContent->getStock() > $cartContent->getQte()) {
+        $em->persist($cartContent);
+        $em->flush();
+        $this->addFlash('success', $translator->trans('flash.success.productAddedToCart'));
+        // } else {
+        $this->addFlash('danger', $translator->trans('flash.error.productStock'));
+        // }
+      }
+
+
+      if ($form2->isSubmitted() && $form2->isValid()) {
+        $em->persist($$product);
+        $em->flush();
+        $this->addFlash('success', $translator->trans('flash.success.productAddedToCart'));
       }
 
       return $this->render('product/product.html.twig', [
         'product' => $product,
-        'form_cart' => $form->createView()
+        'form_cart' => $form->createView(),
+        'form_update' => $form2->createView()
       ]);
     } else {
       $this->addFlash("danger", $translator->trans('flash.error.productMissing'));
       return $this->redirectToRoute('product');
     }
+  }
+
+  /**
+   * @Route("/product/delete/{id}", name="delete_product")
+   * 
+   * @IsGranted("ROLE_ADMIN")
+   */
+  public function delete(Product $product = null, TranslatorInterface $translator)
+  {
+    if ($product != null) {
+      unlink("uploads/" . $product->getPicture());
+      $em = $this->getDoctrine()->getManager();
+      $em->remove($product);
+      $em->flush();
+      $this->addFlash('success', $translator->trans('produit.flash.deleted'));
+    } else {
+      $this->addFlash('danger', $translator->trans('produit.flash.inexis'));
+    }
+    return $this->redirectToRoute('product');
   }
 }

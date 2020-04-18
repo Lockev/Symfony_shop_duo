@@ -165,6 +165,15 @@ class User implements UserInterface
         return $this->carts;
     }
 
+    public function getActualCart(): Cart
+    {
+        foreach ($this->carts as $cart) {
+            if ($cart->getState() == false) {
+                return $cart;
+            }
+        }
+    }
+
     public function addCart(Cart $cart): self
     {
         if (!$this->carts->contains($cart)) {

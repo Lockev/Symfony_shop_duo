@@ -9,6 +9,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CartContent
 {
+    public function __construct($product, $cart)
+    {
+        $this->setProduct($product);
+        $this->setCart($cart);
+        $this->setCreatedAt(new \DateTime());
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
