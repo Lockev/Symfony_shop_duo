@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="{{ path('product') }}">Produits</a>
-            <a class="nav-item nav-link" href="#">Features</a>
+            <a class="nav-item nav-link" href="{{path('cart')}}">Cart</a>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
               <a class="nav-item nav-link" href="{{ path('app_logout')}}">Déconnexion</a>
             {% else %}

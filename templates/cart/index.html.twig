@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        {% if cartContents is not null %}
+            {% for cartContent in cartContents %}
+                <div>
+                    <span>{{cartContent.product.name}}</span>
+                    <span>{{cartContent.product.description}}</span>
+                    <span>{{cartContent.product.price}}</span>
+                    <span>{{cartContent.product.stock}}</span>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Votre panier est vide.</p>
+        {% endif %}
+    {% else %}
+        <p>Vous devez etre connecté</p>
+    {% endif %}
+{% endblock %}

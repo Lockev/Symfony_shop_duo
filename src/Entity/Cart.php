@@ -35,7 +35,7 @@ class Cart
     private $state = false;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CartContent", mappedBy="cart", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\CartContent", mappedBy="cart", orphanRemoval=true, fetch="EAGER")
      */
     private $cartContents;
 
