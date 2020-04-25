@@ -14,29 +14,33 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+    <h1 class="h3 mb-3 font-weight-normal">{{ 'Please sign in'|trans }}</h1>
+    <div class="row">
+      <label class="col-form-label col-sm-2" for="inputEmail">{{ 'Email'|trans }}</label>
+      <div class="col-sm-10 mb-3"><input class="form-control" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus></div>
+      <label class="col-form-label col-sm-2" for="inputPassword">{{ 'Password'|trans }}</label>
+      <div class="col-sm-10 mb-3"><input class="form-control" type="password" name="password" id="inputPassword" class="form-control" required></div>
+      
+      <input type="hidden" name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}"
+      >
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+      {#
+          Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+          See https://symfony.com/doc/current/security/remember_me.html
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
+          <div class="checkbox mb-3">
+              <label>
+                  <input type="checkbox" name="_remember_me"> Remember me
+              </label>
+          </div>
+      #}
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <button class="btn btn-primary" type="submit">
+            {{ 'Sign in'|trans }}
+        </button>
+      </div>
+    </div>
 </form>
 {% endblock %}

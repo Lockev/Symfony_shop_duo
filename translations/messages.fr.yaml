@@ -1,0 +1,16 @@
+name: Nom
+description: Description
+price: Prix
+stock: Stock
+picture: Image
+
+Name: Nom
+Firstname: Prénom
+Email: Adresse Email
+Plain password: Mot de passe
+Password: Mot de passe
+agreeTerms: Accepter les conditions d'utilisation
+Register: S'inscrire
+
+Please sign in: Se connecter
+Sign in: Se connecter
