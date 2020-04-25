@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Error 403{% endblock %}
+
+{% block body %}
+<style>
+</style>
+
+<div class="container">
+  <h1>The ressource you are trying to access is not availible.</h1>
+  <p><a href="{{ path('products') }}">Go back to the home page.</a></p>
+</div>
+{% endblock %}
