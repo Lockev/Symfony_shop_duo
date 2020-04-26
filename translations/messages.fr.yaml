@@ -1,5 +1,6 @@
 name: Nom
 description: Description
+Description: Description
 price: Prix
 Price: Prix
 stock: Stock
@@ -16,6 +17,12 @@ Password: Mot de passe
 agreeTerms: Accepter les conditions d'utilisation
 Register: S'inscrire
 Quantity: Quantité
+User: Utilisateur
+User ID: ID de l'utilisateur
+Registration date: Date de création du compte
+Cart ID: ID du panier
+Articles: Produits
+logout: Deconnexion
 
 Shop: Boutique
 Products: Produits
@@ -26,10 +33,32 @@ Disconnect: Déconnexion
 myCarts: Mes paniers
 
 title:
-  adminUser: Paniers non achetés
+  admin:
+    user: Nouveaux utilisateurs
+    cart: Paniers non achetés
+  cart: Votre panier
+  error: An error occured.
+  product: Page Produit
+  register: Créer un compte
+  login: Se connecter
+  myProfile: Mes précédents Paniers
+  myCart: Mon panier
 
-connection:
+admin:
+  unauthorised: Vous n'avez pas les droits d'administrations suffisants pour voir le contenu de cette page.
+  user:
+    empty: Il n'y a aucun utilisateur
+    link: Liste des paniers non payés
+    title: Liste de tous les nouveaux utilisateurs.
+  cart:
+    link: Liste des nouveaux utilisateurs
+    title: Liste de tous les paniers non achetés
+    empty: Il n'y a aucun panier en cours
+
+login:
   sign: Se connecter
+  required: Vous devez nous connecter
+  loggedAs: Vous êtes connecté en tant que
 
 cart:
   empty: Votre panier est vide.
@@ -40,3 +69,13 @@ cart:
 product:
   add: Créer un nouveau produit
   delete: Supprimer ce produit
+  edit: Modifier un produit
+
+user:
+  purchaseDate: Date d'achat
+
+error:
+  three: Ressource inaccessible
+  four: La page que vous cherchez n'éxiste pas
+  five: Erreur interne du serveur
+  back: Retourner sur la page principale

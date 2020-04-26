@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Paniers non achetés{% endblock %}
+{% block title %}{{ 'title.admin.cart'|trans }}{% endblock %}
 
 {% block body %}
 
     {% if is_granted("ROLE_SUPER_ADMIN") %}
 
-      <a href="{{ path('newUsers') }}">Liste des nouveaux utilisateurs</a>
+      <a href="{{ path('newUsers') }}">{{ 'admin.cart.link'|trans }}</a>
 
         {% if allCarts is not null %}
 
-          <h1>Liste de tous les carts non achetés.</h1>
+          <h1>{{ 'admin.cart.title'|trans }}</h1>
           <table class="table">
             <thead class="thead-dark">
               <tr>
@@ -33,10 +33,10 @@
               </tbody>
             </table>
         {% else %}
-            <p>{{ 'newCarts.empty'|trans }}</p>
+            <p>{{ 'admin.cart.empty'|trans }}</p>
         {% endif %}
     {% else %}
-        <p>Vous n'avez pas les droits d'administrations suffisants pour voir le contenu de cette page.</p>
+        <p>{{ 'admin.unauthorised'|trans }}</p>
     {% endif %}
 
 <style>

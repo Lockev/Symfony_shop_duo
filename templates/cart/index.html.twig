@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon panier{% endblock %}
+{% block title %}{{ 'title.cart'|trans }}{% endblock %}
 
 {% block body %}
 
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
     
         {% if cartContents is not null %}
-        {{ dump(cartContents) }}
             <table class="table">
               <thead class="thead-dark">
                 <tr>
@@ -36,7 +35,7 @@
             <p>{{ 'cart.empty'|trans }}</p>
         {% endif %}
     {% else %}
-        <p>Vous devez etre connecté</p>
-        <a href="{{path("app_login")}}">Se connecter</a>
+        <p>{{ 'login.required'|trans }}</p>
+        <a href="{{path("app_login")}}">{{ 'login.sign'|trans }}</a>
     {% endif %}
 {% endblock %}

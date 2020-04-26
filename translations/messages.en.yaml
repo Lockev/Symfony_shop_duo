@@ -25,7 +25,7 @@ Admin: Admin
 Disconnect: Disconnect
 myCarts: My carts
 
-connection:
+login:
   sign: Please sign in
 
 cart:
@@ -37,3 +37,9 @@ cart:
 product:
   add: Create a new product
   delete: Delete this product
+
+error:
+  three: The ressource you are trying to access is not availible.
+  four: The page you are looking for doesn't exist.
+  five: There was an internal error.
+  back: Go back to main page.

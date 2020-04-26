@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{app.user.name}}{% endblock %}
+{% block title %}{{ 'title.myCart'|trans }} {{app.user.name}}{% endblock %}
 
 {% block body %}
     {{form(update_form)}}
     {% for cart in carts %}
-    {{dump(cart)}}
         <span><a href="{{ path('details', {'id':cart.id}) }}">{{ cart.id }}</a></span>
         <span>{{cart.purchaseDate|date('Y-m-d')}}</span>
         {% set tot = 0 %}

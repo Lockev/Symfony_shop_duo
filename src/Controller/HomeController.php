@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+
 class HomeController extends AbstractController
 {
   /**
@@ -19,7 +20,7 @@ class HomeController extends AbstractController
   }
 
   /**
-   * @Route("/admin", name="admin")
+   * @Route("/{_locale}/admin", name="admin")
    * @IsGranted("ROLE_SUPER_ADMIN")
    */
   public function adminCarts(CartRepository $cartRepository)
@@ -32,7 +33,7 @@ class HomeController extends AbstractController
   }
 
   /**
-   * @Route("/newUsers", name="newUsers")
+   * @Route("/{_locale}/newUsers", name="newUsers")
    * @IsGranted("ROLE_SUPER_ADMIN")
    */
   public function adminUsers()

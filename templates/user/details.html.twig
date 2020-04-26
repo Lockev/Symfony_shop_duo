@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{app.user.name}}{% endblock %}
+{% block title %}{{ 'title.myProfile'|trans }} : {{app.user.name}}{% endblock %}
 
 {% block body %}
     <table class="table">
@@ -25,5 +25,5 @@
             {% endfor %}
         </tbody>
         </table>
-        <p>Date d'achat : {{cart.purchaseDate|date('Y-m-d')}}</p>
+        <p>{{ 'user.purchaseDate'|trans }} : {{cart.purchaseDate|date('Y-m-d')}}</p>
 {% endblock %}

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Error 500{% endblock %}
+{% block title %}{{ 'title.error'|trans }}{% endblock %}
 
 {% block body %}
 <style>
 </style>
 
 <div class="container">
-  <h1>There was an internal error.</h1>
-  <p><a href="{{ path('product') }}">Go back to the home page.</a></p>
+  <h1>{{ 'error.five'|trans }}</h1>
+  <p><a href="{{ path('product') }}">{{ 'error.back'|trans }}</a></p>
 </div>
 {% endblock %}
