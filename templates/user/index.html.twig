@@ -4,7 +4,13 @@
 
 {% block body %}
     {% for cart in carts %}
-        <span>{{cart.id}}</span>
-        <span>{{cart.purchaseDate|date('Y-m-d')}}
+    {{dump(cart)}}
+        <span><a href="{{ path('details', {'id':cart.id}) }}">{{ cart.id }}</a></span>
+        <span>{{cart.purchaseDate|date('Y-m-d')}}</span>
+        {% set tot = 0 %}
+        {% for product in cart.cartContents %}
+            {% set tot = tot + product.quantity * product.product.price%}
+        {% endfor %}
+        <span>{{tot}}</span>
     {% endfor %}
 {% endblock %}
