@@ -39,7 +39,7 @@
 
   {% if is_granted('ROLE_ADMIN') %}
   <hr>
-  <h1> Ajouter un produit </h1>
+  <h1>{{ 'product.add'|trans }}</h1>
     {{ form_start(form_new) }}
     {{ form_end(form_new) }}
   {% endif %}

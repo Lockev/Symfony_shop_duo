@@ -1,8 +1,12 @@
 name: Nom
 description: Description
 price: Prix
+Price: Prix
 stock: Stock
 picture: Image
+Picture: Image
+Delete: Supprimer
+Save: Sauvegarder
 
 Name: Nom
 Firstname: Prénom
@@ -18,6 +22,7 @@ Products: Produits
 Cart: Panier
 Sign in: Se connecter
 Disconnect: Déconnexion
+myCarts: Mes paniers
 
 connection:
   sign: Se connecter
@@ -26,3 +31,8 @@ cart:
   empty: Votre panier est vide.
   price: Prix total
   none: Il n'y a aucun produits.
+  delete: Retirer le produit
+
+product:
+  add: Créer un nouveau produit
+  delete: Supprimer ce produit

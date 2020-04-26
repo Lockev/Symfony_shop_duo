@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Entity\Cart;
+use App\Entity\CartContent;
 
 /**
  *  @Route("/{_locale}")
@@ -41,5 +42,26 @@ class CartController extends AbstractController
     $this->addFlash('success', $translator->trans('flash.success.cartPurchased'));
 
     return $this->redirectToRoute('product');
+  }
+
+  /**
+   * @Route("/cart/deleteItem/{id}", name="delete_cart_item")
+   * 
+   */
+  public function deleteItem(CartContent $cartContent = null, TranslatorInterface $translator)
+  {
+    if ($cartContent != null) {
+      $em = $this->getDoctrine()->getManager();
+      $em->remove($cartContent);
+      $em->flush();
+
+      $this->addFlash('success', $translator->trans('flash.success.itemCartDeleted'));
+    } else {
+      $this->addFlash('success', $translator->trans('flash.error.itemCartDeleted'));
+    }
+
+
+
+    return $this->redirectToRoute('cart');
   }
 }
