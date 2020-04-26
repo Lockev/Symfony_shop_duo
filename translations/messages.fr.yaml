@@ -5,7 +5,8 @@ Price: Prix
 stock: Stock
 picture: Image
 Picture: Image
-Create: Créer le nouveau produit
+Delete: Supprimer
+Save: Sauvegarder
 
 Name: Nom
 Firstname: Prénom
@@ -30,6 +31,8 @@ cart:
   empty: Votre panier est vide.
   price: Prix total
   none: Il n'y a aucun produits.
+  delete: Retirer le produit
 
 product:
   add: Créer un nouveau produit
+  delete: Supprimer ce produit

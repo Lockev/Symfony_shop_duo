@@ -5,7 +5,8 @@ Price: Price
 stock: Stock
 picture: Picture
 Picture: Picture
-Create: Create
+Delete: Delete
+Save: Save
 
 Name: Name
 Firstname: Firstname
@@ -30,6 +31,8 @@ cart:
   empty: Your cart is empty.
   price: Total
   none: There is currently no product in your cart.
+  delete: Remove this product
 
 product:
   add: Create a new product
+  delete: Delete this product
