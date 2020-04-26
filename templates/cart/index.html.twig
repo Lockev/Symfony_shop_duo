@@ -15,7 +15,7 @@
                   <th>{{ 'Description'|trans }}</th>
                   <th>{{ 'Quantity'|trans }}</th>
                   <th>{{ 'cart.price'|trans }}</th> 
-                  <th>{{ 'Picture'|trans }}</th>
+                  <th>{{ 'Price'|trans }}</th>
                   <th>{{ 'Delete'|trans }}</th>
                 </tr>
               </thead>
@@ -26,7 +26,7 @@
                     <td>{{cartContent.product.description}}</td>
                     <td>{{cartContent.quantity}}</td>
                     <td>{{cartContent.product.price * cartContent.quantity}}€</td>
-                    <td><img class="img-thumbnail" src="{{asset('/uploads/'~ cartContent.product.picture)}}" style="height:75px;"></td> 
+                    <td>{{cartContent.product.price}}€</td> 
                     <td><a href="{{ path('delete_cart_item', {'id':cartContent.id}) }}"><button type="button" class="btn btn-danger">{{ 'cart.delete'|trans }}</button></a></td> 
                   </tr>
                 {% endfor %}
