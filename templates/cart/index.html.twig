@@ -19,6 +19,7 @@
                 </tr>
               </thead>
               <tbody>
+              {% set tot = 0 %}
                 {% for cartContent in cartContents %}
                   <tr>
                     <td><a href="{{ path('one_product', {'id':cartContent.product.id}) }}">{{cartContent.product.name}}</a></td>
@@ -28,9 +29,11 @@
                     <td>{{cartContent.product.price}}€</td> 
                     <td><a href="{{ path('delete_cart_item', {'id':cartContent.id}) }}"><button type="button" class="btn btn-danger">{{ 'cart.delete'|trans }}</button></a></td> 
                   </tr>
+                  {% set tot = tot + cartContent.product.price * cartContent.quantity %}
                 {% endfor %}
                 </tbody>
               </table>
+              <p> {{ 'Total'|trans }} : {{ tot }}€ </p>
               <a href="{{path('buy_cart')}}"><button type="button" class="btn btn-success">{{ 'cart.buy'|trans }}</button></a>
         {% else %}
             <p>{{ 'cart.empty'|trans }}</p>

@@ -132,7 +132,7 @@ class ProductController extends AbstractController
     if ($product != null) {
       unlink("uploads/" . $product->getPicture()); //On supprime les images
       $em = $this->getDoctrine()->getManager();
-      $em->$em->remove($product);
+      $em->remove($product);
       $em->flush();
       $this->addFlash('success', $translator->trans('produit.flash.deleted'));
     } else {

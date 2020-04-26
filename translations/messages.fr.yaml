@@ -25,6 +25,7 @@ Registration date: Date de création du compte
 Cart ID: ID du panier
 Articles: Produits
 logout: Deconnexion
+Total: Total
 
 Shop: Boutique
 Products: Produits
@@ -32,7 +33,7 @@ Cart: Panier
 Sign in: Se connecter
 Admin: Admin
 Disconnect: Déconnexion
-myCarts: Mes paniers
+myCarts: Mon Compte
 
 title:
   admin:
@@ -68,15 +69,18 @@ cart:
   none: Il n'y a aucun produits.
   delete: Retirer le produit
   buy: Acheter ce panier
+  add: Ajouter au panier
 
 product:
   add: Créer un nouveau produit
   delete: Supprimer ce produit
   edit: Modifier un produit
   titre: Liste des produits
+  stock: Unités en stock
 
 user:
   purchaseDate: Date d'achat
+  myCarts: Mes paniers précédents
 
 error:
   three: Ressource inaccessible

@@ -12,12 +12,13 @@
   <p>{{ 'price'|trans }} : {{product.price}}€</p>
   <img src="{{asset('/uploads/'~ product.picture)}}" class="img-thumbnail" style="height:120px">
 </div>
-<div class="mb-4">
-  <hr>
-  <h2>{{ 'cart.add'|trans }}</h2>
-</div>
+
 
   {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+  <div class="mb-4">
+    <hr>
+    <h2>{{ 'cart.add'|trans }}</h2>
+  </div>
     {{ form_start(form_cart) }}
     {{ form_end(form_cart) }}
   {% endif %}

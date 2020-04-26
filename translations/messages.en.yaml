@@ -25,6 +25,7 @@ Registration date: Registration date
 Cart ID: Cart ID
 Articles: Articles
 logout: Logout
+Total: Total
 
 Shop: Shop
 Products: Products
@@ -32,7 +33,7 @@ Cart: Cart
 Sign in: Sign in
 Admin: Admin
 Disconnect: Disconnect
-myCarts: My carts
+myCarts: My Account
 
 title:
   admin:
@@ -68,12 +69,18 @@ cart:
   none: There is currently no product in your cart.
   delete: Remove this product
   buy: Buy this cart
+  add: Add to cart
 
 product:
   add: Create a new product
   delete: Delete this product
   edit: Edit a product
   titre: Product list
+  stock: Number in stock
+
+user:
+  purchaseDate: Purchase date
+  myCarts: My carts
 
 error:
   three: The ressource you are trying to access is not availible.
