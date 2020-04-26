@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\CartRepository;
-use App\Repository\UserRepository;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -34,11 +34,17 @@ class HomeController extends AbstractController
    * @Route("/newUsers", name="newUsers")
    * @IsGranted("ROLE_SUPER_ADMIN")
    */
-  public function adminUsers(UserRepository $userRepository)
+  public function adminUsers()
   {
-    $allNewUsers = $userRepository->findAll();
+    $em = $this->getDoctrine()->getManager();
+    $allNewUsers = $em->getRepository(User::class)->findAll();
+
+    $date = new \DateTime();
+    $date->modify('-1 day');
+
     return $this->render('user/admin.html.twig', [
-      'allNewUsers' => $allNewUsers
+      'allNewUsers' => $allNewUsers,
+      'lastDay' => $date
     ]);
   }
 }
