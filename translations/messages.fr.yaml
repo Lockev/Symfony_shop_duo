@@ -11,6 +11,7 @@ Plain password: Mot de passe
 Password: Mot de passe
 agreeTerms: Accepter les conditions d'utilisation
 Register: S'inscrire
+Quantity: Quantité
 
 Shop: Boutique
 Products: Produits
@@ -18,4 +19,10 @@ Cart: Panier
 Sign in: Se connecter
 Disconnect: Déconnexion
 
-Please sign in: Se connecter
+connection:
+  sign: Se connecter
+
+cart:
+  empty: Votre panier est vide.
+  price: Prix total
+  none: Il n'y a aucun produits.
