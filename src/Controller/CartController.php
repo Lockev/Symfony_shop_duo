@@ -18,6 +18,7 @@ class CartController extends AbstractController
   /**
    * @Route("/cart", name="cart")
    * 
+   * @IsGranted("IS_AUTHENTICATED_FULLY")
    */
   public function index()
   {

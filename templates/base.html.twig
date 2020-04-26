@@ -16,8 +16,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="{{ path('product') }}">{{ 'Products'|trans }}</a>
-            <a class="nav-item nav-link" href="{{path('cart')}}">{{ 'Cart'|trans }}</a>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a class="nav-item nav-link" href="{{path('cart')}}">{{ 'Cart'|trans }}</a>
               <a class="nav-item nav-link" href="{{ path('me')}}">{{ 'myCarts'|trans }}</a>
               {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <a class="nav-item nav-link" href="{{ path('admin')}}">{{ 'Admin'|trans }}</a>
