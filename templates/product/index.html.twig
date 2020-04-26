@@ -11,7 +11,7 @@
   <h1>{{ 'produit.titre'|trans }}</h1>
   {% if products is not empty %}
     <table class="table">
-      <thead>
+      <thead class="thead-dark">
         <tr>
           <th>{{ 'name'|trans }}</th>
           <th>{{ 'description'|trans }}</th>
@@ -24,7 +24,6 @@
         {% for product in products %}
           <tr>
             <td class="align-middle"><a href="{{ path('one_product', {'id':product.id}) }}">{{ product.name }}</a></td>
-            
             <td class="align-middle">{{ product.description }}</td>
             <td class="align-middle">{{ product.price }}€</td>
             <td class="align-middle">{{ product.stock }}</td>
@@ -34,7 +33,7 @@
       </tbody>
     </table>
   {% else %}
-    <p>Il n'y a aucun produits.</p>
+    <p>{{ 'cart.none'|trans }}</p>
   {% endif %}
   
 

@@ -1,20 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!{% endblock %}
+{% block title %}Mon panier{% endblock %}
 
 {% block body %}
+
     {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    
         {% if cartContents is not null %}
-            {% for cartContent in cartContents %}
-                <div>
-                    <span>{{cartContent.product.name}}</span>
-                    <span>{{cartContent.product.description}}</span>
-                    <span>{{cartContent.product.price}}</span>
-                    <span>{{cartContent.product.stock}}</span>
-                </div>
-            {% endfor %}
+        {{ dump(cartContents) }}
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th>{{ 'Name'|trans }}</th>
+                  <th>{{ 'Description'|trans }}</th>
+                  <th>{{ 'Quantity'|trans }}</th>
+                  <th>{{ 'cart.price'|trans }}</th> 
+                  <th>{{ 'Picture'|trans }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for cartContent in cartContents %}
+                  <tr>
+                    <td><a href="{{ path('one_product', {'id':cartContent.product.id}) }}">{{cartContent.product.name}}</a></td>
+                    <td>{{cartContent.product.description}}</td>
+                    <td>{{cartContent.quantity}}</td>
+                    <td>{{cartContent.product.price * cartContent.quantity}}€</td>
+                    <td><img class="img-thumbnail" src="{{asset('/uploads/'~ cartContent.product.picture)}}" style="height:75px;"></td> 
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
         {% else %}
-            <p>Votre panier est vide.</p>
+            <p>{{ 'cart.empty'|trans }}</p>
         {% endif %}
     {% else %}
         <p>Vous devez etre connecté</p>

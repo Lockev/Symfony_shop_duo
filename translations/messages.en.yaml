@@ -10,7 +10,8 @@ Email: Email Adress
 Plain password: Password
 Password: Password
 Agree terms: Agree terms
-Register: S'inscrire
+Register: Register
+Quantity: Quantity
 
 Shop: Shop
 Products: Products
@@ -18,4 +19,10 @@ Cart: Cart
 Sign in: Sign in
 Disconnect: Disconnect
 
-Please sign in: Please sign in
+connection:
+  sign: Please sign in
+
+cart:
+  empty: Your cart is empty.
+  price: Total
+  none: There is currently no product in your cart.
