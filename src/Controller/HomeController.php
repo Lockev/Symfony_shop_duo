@@ -39,8 +39,12 @@ class HomeController extends AbstractController
     $em = $this->getDoctrine()->getManager();
     $allNewUsers = $em->getRepository(User::class)->findAll();
 
+    $date = new \DateTime();
+    $date->modify('-1 day');
+
     return $this->render('user/admin.html.twig', [
-      'allNewUsers' => $allNewUsers
+      'allNewUsers' => $allNewUsers,
+      'lastDay' => $date
     ]);
   }
 }

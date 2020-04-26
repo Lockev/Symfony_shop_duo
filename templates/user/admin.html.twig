@@ -20,12 +20,12 @@
               </tr>
             </thead>
             <tbody>
-              {% for user in allNewUsers %}
-                {% if user.createdAt %}
+              {% for user in allNewUsers|reverse %}
+                {% if user.createdAt > lastDay %}
                   <tr>
                     <td>{{ user.name }} {{ user.firstname }}</td>
                     <td>{{ user.id }}</td>
-                    <td>{{ user.createdAt|date('h:i d/m/Y') }}</td>
+                    <td>{{ user.createdAt|date('H:i | d/m/Y') }}</td>
                   </tr>
                 {% endif %}
               {% endfor %}
