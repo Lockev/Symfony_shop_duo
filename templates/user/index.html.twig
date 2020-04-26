@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{app.user.name}}{% endblock %}
+
+{% block body %}
+    {% for cart in carts %}
+        <span>{{cart.id}}</span>
+        <span>{{cart.purchaseDate|date('Y-m-d')}}
+    {% endfor %}
+{% endblock %}

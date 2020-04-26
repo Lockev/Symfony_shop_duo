@@ -186,6 +186,17 @@ class User implements UserInterface
     }
   }
 
+  public function getPaidCart()
+  {
+    $paidCarts = [];
+    foreach ($this->getCarts() as $cart) {
+      if ($cart->getState() == true) {
+        array_push($paidCarts, $cart);
+      }
+    }
+    return $paidCarts;
+  }
+
   public function addCart(Cart $cart): self
   {
     if (!$this->carts->contains($cart)) {
