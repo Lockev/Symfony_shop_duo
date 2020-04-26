@@ -29,7 +29,6 @@ class User implements UserInterface
 
   /**
    * @ORM\Column(type="json")
-   * @Assert\NotNull
    */
   private $roles = [];
 
@@ -45,6 +44,7 @@ class User implements UserInterface
    *      min = 1,
    *      max = 255
    * )
+   * @Assert\NotNull
    */
   private $name;
 
@@ -54,6 +54,7 @@ class User implements UserInterface
    *      min = 1,
    *      max = 255
    * )
+   * @Assert\NotNull
    */
   private $firstname;
 
@@ -197,7 +198,7 @@ class User implements UserInterface
     return $paidCarts;
   }
 
-  
+
   public function addCart(Cart $cart): self
   {
     if (!$this->carts->contains($cart)) {

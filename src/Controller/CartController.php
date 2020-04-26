@@ -51,6 +51,7 @@ class CartController extends AbstractController
   /**
    * @Route("/cart/deleteItem/{id}", name="delete_cart_item")
    * 
+   * @IsGranted("IS_AUTHENTICATED_FULLY")
    */
   public function deleteItem(CartContent $cartContent = null, TranslatorInterface $translator)
   {

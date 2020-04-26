@@ -3,6 +3,7 @@
 {% block title %}{{app.user.name}}{% endblock %}
 
 {% block body %}
+    {{form(update_form)}}
     {% for cart in carts %}
     {{dump(cart)}}
         <span><a href="{{ path('details', {'id':cart.id}) }}">{{ cart.id }}</a></span>
