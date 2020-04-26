@@ -33,8 +33,10 @@
                 {% endfor %}
                 </tbody>
               </table>
-              <p> {{ 'Total'|trans }} : {{ tot }}€ </p>
-              <a href="{{path('buy_cart')}}"><button type="button" class="btn btn-success">{{ 'cart.buy'|trans }}</button></a>
+              {% if tot != 0 %}
+                <p> {{ 'Total'|trans }} : {{ tot }}€ </p>
+                <a href="{{path('buy_cart')}}"><button type="button" class="btn btn-success">{{ 'cart.buy'|trans }}</button></a>
+              {% endif %}
         {% else %}
             <p>{{ 'cart.empty'|trans }}</p>
         {% endif %}
