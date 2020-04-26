@@ -25,6 +25,9 @@ Admin: Admin
 Disconnect: Déconnexion
 myCarts: Mes paniers
 
+title:
+  adminUser: Paniers non achetés
+
 connection:
   sign: Se connecter
 
