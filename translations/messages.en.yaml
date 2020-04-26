@@ -1,12 +1,15 @@
 name: Name
 description: Description
+Description: Description
 price: Price
 Price: Price
 stock: Stock
+Stock: Stock
 picture: Picture
 Picture: Picture
 Delete: Delete
 Save: Save
+ID: ID
 
 Name: Name
 Firstname: Firstname
@@ -16,6 +19,12 @@ Password: Password
 Agree terms: Agree terms
 Register: Register
 Quantity: Quantity
+User: User
+User ID: User ID
+Registration date: Registration date
+Cart ID: Cart ID
+Articles: Articles
+logout: Logout
 
 Shop: Shop
 Products: Products
@@ -25,21 +34,64 @@ Admin: Admin
 Disconnect: Disconnect
 myCarts: My carts
 
+title:
+  admin:
+    user: New Users
+    cart: Unbought carts
+  cart: Your carts
+  error: An error occured.
+  product: Products
+  register: Register
+  login: Log in
+  myProfile: My old carts
+  myCart: My cart
+
+admin:
+  unauthorised: You are not allowed to do anything on this page
+  user:
+    empty: There is no user
+    link: Unbought carts
+    title: New Users
+  cart:
+    link: New Users
+    title: Unbought carts
+    empty: There is no unbought carts
+
 login:
   sign: Please sign in
+  required: Please log yourself
+  loggedAs: You are currently logged as
 
 cart:
   empty: Your cart is empty.
   price: Total
   none: There is currently no product in your cart.
   delete: Remove this product
+  buy: Buy this cart
 
 product:
   add: Create a new product
   delete: Delete this product
+  edit: Edit a product
+  titre: Product list
 
 error:
   three: The ressource you are trying to access is not availible.
   four: The page you are looking for doesn't exist.
   five: There was an internal error.
   back: Go back to main page.
+
+flash:
+  success:
+    itemCartDeleted: Product removed from cart
+    cartBought: Cart bought successfully
+    productAdded: The new product has been added to the shop
+    productAddedToCart: The product has been added to the cart
+    deleted: The product has been removed successfully from the shop
+    change: The account has been successfully modified
+  error:
+    itemCartDeleted: This product cannot be removed from the cart
+    uploadPicture: This picture cannot be uploaded
+    productNotEnoughInStock: There is not enough of that product in stock
+    productMissing: The product you are looking for does not exist
+    missing: The product you are looking for does not exist

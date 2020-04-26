@@ -4,13 +4,29 @@
 
 {% block body %}
     {{form(update_form)}}
-    {% for cart in carts %}
-        <span><a href="{{ path('details', {'id':cart.id}) }}">{{ cart.id }}</a></span>
-        <span>{{cart.purchaseDate|date('Y-m-d')}}</span>
-        {% set tot = 0 %}
-        {% for product in cart.cartContents %}
-            {% set tot = tot + product.quantity * product.product.price%}
-        {% endfor %}
-        <span>{{tot}}</span>
-    {% endfor %}
+
+    <hr>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>{{ 'ID'|trans }}</th>
+                <th>{{ 'user.purchaseDate'|trans }}</th>
+                <th>{{ 'Price'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for cart in carts %}
+            <tr>
+                <td><a href="{{ path('details', {'id':cart.id}) }}">{{ cart.id }}</a></td>
+                <td>{{cart.purchaseDate|date('Y-m-d')}}</td>
+                {% set tot = 0 %}
+                {% for product in cart.cartContents %}
+                  {% set tot = tot + product.quantity * product.product.price %}
+                {% endfor %}
+                <td>{{tot}}€</td> 
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
 {% endblock %}

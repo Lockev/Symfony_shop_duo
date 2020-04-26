@@ -4,10 +4,12 @@ Description: Description
 price: Prix
 Price: Prix
 stock: Stock
+Stock: Stock
 picture: Image
 Picture: Image
 Delete: Supprimer
 Save: Sauvegarder
+ID: ID
 
 Name: Nom
 Firstname: Prénom
@@ -37,7 +39,7 @@ title:
     user: Nouveaux utilisateurs
     cart: Paniers non achetés
   cart: Votre panier
-  error: An error occured.
+  error: Une erreur a eu lieue.
   product: Page Produit
   register: Créer un compte
   login: Se connecter
@@ -65,11 +67,13 @@ cart:
   price: Prix total
   none: Il n'y a aucun produits.
   delete: Retirer le produit
+  buy: Acheter ce panier
 
 product:
   add: Créer un nouveau produit
   delete: Supprimer ce produit
   edit: Modifier un produit
+  titre: Liste des produits
 
 user:
   purchaseDate: Date d'achat
@@ -79,3 +83,18 @@ error:
   four: La page que vous cherchez n'éxiste pas
   five: Erreur interne du serveur
   back: Retourner sur la page principale
+
+flash:
+  success:
+    itemCartDeleted: Produit retiré avec succès
+    cartBought: Panier acheté avec succès
+    productAdded: Le produit a été ajouté à la boutique
+    productAddedToCart: Produit ajouté au panier
+    deleted: Le produit a été supprimé avec succès
+    change: Le compte a été modifié avec succès
+  error:
+    itemCartDeleted: Le produit n'a pas pu être retiré du panier
+    uploadPicture: La photo n'a pas pu être uploadé
+    productNotEnoughInStock: La quantité en stock est inférieure à la quantité que vous commendez
+    productMissing: Le produit n'a pu être identifié
+    missing: Le produit recherché n'existe pas

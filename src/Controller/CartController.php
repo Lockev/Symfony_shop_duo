@@ -44,7 +44,7 @@ class CartController extends AbstractController
       $em->persist($cart);
       $em->flush();
 
-      $this->addFlash('success', $translator->trans("test"));
+      $this->addFlash('success', $translator->trans("flash.success.cartBought"));
     }
 
     return $this->redirectToRoute('product');

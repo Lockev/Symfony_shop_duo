@@ -136,7 +136,7 @@ class ProductController extends AbstractController
       $em->flush();
       $this->addFlash('success', $translator->trans('produit.flash.deleted'));
     } else {
-      $this->addFlash('danger', $translator->trans('produit.flash.inexis'));
+      $this->addFlash('danger', $translator->trans('produit.flash.missing'));
     }
     return $this->redirectToRoute('product');
   }
