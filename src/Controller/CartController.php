@@ -21,6 +21,7 @@ class CartController extends AbstractController
    */
   public function index()
   {
+    //On récupere tous les produits du panier qui est à l'état false
     $cartContents = $this->getUser()->getActualCart()->getCartContents();
     return $this->render('cart/index.html.twig', [
       'cartContents' => $cartContents,
@@ -34,10 +35,11 @@ class CartController extends AbstractController
    */
   public function buy(TranslatorInterface $translator)
   {
+    //On peut valider le panier uniquement s'il y a un objet
     if (!is_null($this->getUser()->getActualCart()->getCartContents()[0])) {
       $em = $this->getDoctrine()->getManager();
-      $currentCart = $this->getUser()->getActualCart()->setState(true);
-      $cart = new Cart($this->getUser());
+      $currentCart = $this->getUser()->getActualCart()->setState(true); //On le valide
+      $cart = new Cart($this->getUser()); //On ajoute un panier pour remplacer l'ancien
       $em->persist($currentCart);
       $em->persist($cart);
       $em->flush();
@@ -49,7 +51,7 @@ class CartController extends AbstractController
   }
 
   /**
-   * @Route("/cart/deleteItem/{id}", name="delete_cart_item")
+   * @Route("/cart/deleteitem/{id}", name="delete_cart_item")
    * 
    * @IsGranted("IS_AUTHENTICATED_FULLY")
    */
@@ -57,6 +59,10 @@ class CartController extends AbstractController
   {
     if ($cartContent != null) {
       $em = $this->getDoctrine()->getManager();
+      $product = $cartContent->getProduct();
+      //On remet la quantité prise dans le produit
+      $product->setStock($product->getStock() + $cartContent->getQuantity());
+      $em->persist($product);
       $em->remove($cartContent);
       $em->flush();
 

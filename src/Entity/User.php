@@ -76,6 +76,7 @@ class User implements UserInterface
   public function __construct()
   {
     $this->carts = new ArrayCollection();
+    $this->setCreatedAt(new \DateTime());
   }
 
   public function getId(): ?int
@@ -190,6 +191,7 @@ class User implements UserInterface
 
   public function getActualCart(): Cart
   {
+    //On récupère le panier qui n'est pas validé
     foreach ($this->getCarts() as $cart) {
       if ($cart->getState() == false) {
         return $cart;
@@ -200,6 +202,7 @@ class User implements UserInterface
   public function getPaidCart()
   {
     $paidCarts = [];
+    //On récupère tous les paniers validés
     foreach ($this->getCarts() as $cart) {
       if ($cart->getState() == true) {
         array_push($paidCarts, $cart);
@@ -234,25 +237,25 @@ class User implements UserInterface
 
   public function getCreatedAt(): ?\DateTimeInterface
   {
-      return $this->createdAt;
+    return $this->createdAt;
   }
 
   public function setCreatedAt(\DateTimeInterface $createdAt): self
   {
-      $this->createdAt = $createdAt;
+    $this->createdAt = $createdAt;
 
-      return $this;
+    return $this;
   }
 
   public function getUpdatedAt(): ?\DateTimeInterface
   {
-      return $this->updatedAt;
+    return $this->updatedAt;
   }
 
   public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
   {
-      $this->updatedAt = $updatedAt;
+    $this->updatedAt = $updatedAt;
 
-      return $this;
+    return $this;
   }
 }

@@ -24,9 +24,10 @@ class UserController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(UserType::class, $this->getUser());
-        $carts = $this->getUser()->getPaidCart();
+        $carts = $this->getUser()->getPaidCart(); //On recupère les paniers validés
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->getUser()->setUpdatedAt(new \DateTime()); //On change le updatedAt
             $em->persist($this->getUser());
             $em->flush();
             $this->addFlash('success', $translator->trans('flash.success.change'));
@@ -43,6 +44,7 @@ class UserController extends AbstractController
      */
     public function cartDetail(Cart $cart)
     {
+        //Seul l'utilisateur peut voir son panier
         if ($this->getUser() == $cart->getUser()) {
             return $this->render('user/details.html.twig', [
                 'cart' => $cart,

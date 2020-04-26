@@ -24,6 +24,7 @@ class HomeController extends AbstractController
    */
   public function adminCarts(CartRepository $cartRepository)
   {
+    //On recupere tous les paniers pas validés
     $allCarts = $cartRepository->findby(['state' => false]);
     return $this->render('cart/admin.html.twig', [
       'allCarts' => $allCarts
@@ -39,6 +40,7 @@ class HomeController extends AbstractController
     $em = $this->getDoctrine()->getManager();
     $allNewUsers = $em->getRepository(User::class)->findAll();
 
+    //On prend la date -1 jour
     $date = new \DateTime();
     $date->modify('-1 day');
 

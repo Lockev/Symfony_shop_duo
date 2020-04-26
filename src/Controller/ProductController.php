@@ -31,7 +31,7 @@ class ProductController extends AbstractController
 
     $form->handleRequest($request);
     if ($form->isSubmitted() && $form->isValid()) {
-
+      //Pour upload l'image
       $file = $form->get('imageUpload')->getData();
 
       if ($file) {
@@ -69,7 +69,7 @@ class ProductController extends AbstractController
   {
     if ($product != null) {
       if ($this->getUser() != null) {
-        $userCart = $this->getUser()->getActualCart();
+        $userCart = $this->getUser()->getActualCart(); //On récupere le panier actuel
       } else {
         $userCart = null;
       }
@@ -84,7 +84,18 @@ class ProductController extends AbstractController
       $form = $this->createForm(CartContentType::class, $cartContent);
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid()) {
-        if ($product->getStock() > $cartContent->getQuantity()) {
+        if ($product->getStock() >= $cartContent->getQuantity()) {
+          //On retirer du stock le nombre ajouté au panier
+          $product->setStock($product->getStock() - $cartContent->getQuantity());
+          foreach ($this->getUser()->getActualCart()->getCartContents() as $cartProduct) {
+            if ($cartProduct->getProduct() == $product) {
+              //Si on ajoute deux fois un même produit sur un panier
+              //Alors on change juste la quantité pour avoir un produit dans le panier au lieu de 2
+              $cartProduct->setQuantity($cartContent->getQuantity() + $cartProduct->getQuantity());
+              $cartContent = $cartProduct;
+            }
+          }
+          $em->persist($product);
           $em->persist($cartContent);
           $em->flush();
           $this->addFlash('success', $translator->trans('flash.success.productAddedToCart'));
@@ -119,9 +130,9 @@ class ProductController extends AbstractController
   public function delete(Product $product = null, TranslatorInterface $translator)
   {
     if ($product != null) {
-      unlink("uploads/" . $product->getPicture());
+      unlink("uploads/" . $product->getPicture()); //On supprime les images
       $em = $this->getDoctrine()->getManager();
-      $em->remove($product);
+      $em->$em->remove($product);
       $em->flush();
       $this->addFlash('success', $translator->trans('produit.flash.deleted'));
     } else {
