@@ -84,13 +84,13 @@ class ProductController extends AbstractController
       $form = $this->createForm(CartContentType::class, $cartContent);
       $form->handleRequest($request);
       if ($form->isSubmitted() && $form->isValid()) {
-        // if ($cartContent->getStock() > $cartContent->getQte()) {
-        $em->persist($cartContent);
-        $em->flush();
-        $this->addFlash('success', $translator->trans('flash.success.productAddedToCart'));
-        // } else {
-        $this->addFlash('danger', $translator->trans('flash.error.productStock'));
-        // }
+        if ($product->getStock() > $cartContent->getQuantity()) {
+          $em->persist($cartContent);
+          $em->flush();
+          $this->addFlash('success', $translator->trans('flash.success.productAddedToCart'));
+        } else {
+          $this->addFlash('danger', $translator->trans('flash.error.productNotEnoughInStock'));
+        }
       }
 
 

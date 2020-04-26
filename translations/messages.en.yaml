@@ -1,8 +1,11 @@
 name: Name
 description: Description
 price: Price
+Price: Price
 stock: Stock
 picture: Picture
+Picture: Picture
+Create: Create
 
 Name: Name
 Firstname: Firstname
@@ -18,6 +21,7 @@ Products: Products
 Cart: Cart
 Sign in: Sign in
 Disconnect: Disconnect
+myCarts: My carts
 
 connection:
   sign: Please sign in
@@ -26,3 +30,6 @@ cart:
   empty: Your cart is empty.
   price: Total
   none: There is currently no product in your cart.
+
+product:
+  add: Create a new product

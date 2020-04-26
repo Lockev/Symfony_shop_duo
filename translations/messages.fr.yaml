@@ -1,8 +1,11 @@
 name: Nom
 description: Description
 price: Prix
+Price: Prix
 stock: Stock
 picture: Image
+Picture: Image
+Create: Créer le nouveau produit
 
 Name: Nom
 Firstname: Prénom
@@ -18,6 +21,7 @@ Products: Produits
 Cart: Panier
 Sign in: Se connecter
 Disconnect: Déconnexion
+myCarts: Mes paniers
 
 connection:
   sign: Se connecter
@@ -26,3 +30,6 @@ cart:
   empty: Votre panier est vide.
   price: Prix total
   none: Il n'y a aucun produits.
+
+product:
+  add: Créer un nouveau produit
