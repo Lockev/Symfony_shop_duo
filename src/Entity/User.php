@@ -197,6 +197,7 @@ class User implements UserInterface
     return $paidCarts;
   }
 
+  
   public function addCart(Cart $cart): self
   {
     if (!$this->carts->contains($cart)) {

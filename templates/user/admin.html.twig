@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paniers non achetés{% endblock %}
+
+{% block body %}
+
+    {% if is_granted("ROLE_SUPER_ADMIN") %}
+
+      <a href="{{ path('admin') }}">Liste des carts non payés</a>
+      
+        {% if allNewUsers is not null %}
+          {% dump(allNewUsers) %}
+          <h1>Liste de tous les nouveaux utilisateurs.</h1>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>{{ 'User'|trans }}</th>
+                <th>{{ 'User ID'|trans }}</th>
+                <th>{{ 'Articles'|trans }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in allNewUsers %}
+                <tr>
+                  
+                  {# <td>{{ user.user.name }} {{ cart.user.firstname }}</td>
+                  <td>{{cart.id}}</td>
+                  {% for product in cart.cartContents %}
+                  <td class="d-flex"><a href="{{ path('one_product', {'id':product.product.id}) }}">{{product.product.name}}</a></td>
+                  {% endfor %} #}
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+        {% else %}
+            <p>{{ 'newUsers.empty'|trans }}</p>
+        {% endif %}
+    {% else %}
+        <p>Vous n'avez pas les droits d'administrations suffisants pour voir le contenu de cette page.</p>
+    {% endif %}
+
+<style>
+td{
+  vertical-align: middle !important
+}
+</style>
+{% endblock %}

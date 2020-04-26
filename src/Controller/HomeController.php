@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Repository\CartRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class HomeController extends AbstractController
 {
@@ -13,5 +16,29 @@ class HomeController extends AbstractController
   public function index()
   {
     return $this->redirectToRoute('product');
+  }
+
+  /**
+   * @Route("/admin", name="admin")
+   * @IsGranted("ROLE_SUPER_ADMIN")
+   */
+  public function adminCarts(CartRepository $cartRepository)
+  {
+    $allCarts = $cartRepository->findby(['state' => false]);
+    return $this->render('cart/admin.html.twig', [
+      'allCarts' => $allCarts
+    ]);
+  }
+
+  /**
+   * @Route("/newUsers", name="newUsers")
+   * @IsGranted("ROLE_SUPER_ADMIN")
+   */
+  public function adminUsers(UserRepository $userRepository)
+  {
+    $allNewUsers = $userRepository->findAll();
+    return $this->render('user/admin.html.twig', [
+      'allNewUsers' => $allNewUsers
+    ]);
   }
 }

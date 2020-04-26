@@ -18,8 +18,12 @@
             <a class="nav-item nav-link active" href="{{ path('product') }}">{{ 'Products'|trans }}</a>
             <a class="nav-item nav-link" href="{{path('cart')}}">{{ 'Cart'|trans }}</a>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a class="nav-item nav-link" href="{{ path('me')}}">{{ 'myCarts'|trans }}</a>
+              <a class="nav-item nav-link" href="{{ path('me')}}">{{ 'myCarts'|trans }}</a>
+              {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <a class="nav-item nav-link" href="{{ path('admin')}}">{{ 'admin'|trans }}</a>
+              {% endif %}
               <a class="nav-item nav-link" href="{{ path('app_logout')}}">{{ 'Disconnect'|trans }}</a>
+              
             {% else %}
               <a class="nav-item nav-link" href="{{ path('app_login')}}">{{ 'Sign in'|trans }}</a>
               <a class="nav-item nav-link" href="{{ path('app_register')}}">{{ 'Register'|trans }}</a>
