@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Entity\Cart;
 use App\Entity\CartContent;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  *  @Route("/{_locale}")
@@ -29,17 +30,20 @@ class CartController extends AbstractController
   /**
    * @Route("/cart/buy", name="buy_cart")
    * 
+   * @IsGranted("IS_AUTHENTICATED_FULLY")
    */
   public function buy(TranslatorInterface $translator)
   {
-    $em = $this->getDoctrine()->getManager();
-    $currentCart = $this->getUser()->getActualCart()->setState(true);
-    $cart = new Cart($this->getUser());
-    $em->persist($currentCart);
-    $em->persist($cart);
-    $em->flush();
+    if (!is_null($this->getUser()->getActualCart()->getCartContents()[0])) {
+      $em = $this->getDoctrine()->getManager();
+      $currentCart = $this->getUser()->getActualCart()->setState(true);
+      $cart = new Cart($this->getUser());
+      $em->persist($currentCart);
+      $em->persist($cart);
+      $em->flush();
 
-    $this->addFlash('success', $translator->trans('flash.success.cartPurchased'));
+      $this->addFlash('success', $translator->trans("test"));
+    }
 
     return $this->redirectToRoute('product');
   }

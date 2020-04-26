@@ -27,7 +27,7 @@
                     <td>{{cartContent.quantity}}</td>
                     <td>{{cartContent.product.price * cartContent.quantity}}€</td>
                     <td><img class="img-thumbnail" src="{{asset('/uploads/'~ cartContent.product.picture)}}" style="height:75px;"></td> 
-                    <td><a href="{{ path('one_product', {'id':cartContent.product.id}) }}"><button type="button" class="btn btn-danger">{{ 'cart.delete'|trans }}</button></a></td> 
+                    <td><a href="{{ path('delete_cart_item', {'id':cartContent.id}) }}"><button type="button" class="btn btn-danger">{{ 'cart.delete'|trans }}</button></a></td> 
                   </tr>
                 {% endfor %}
                 </tbody>
@@ -37,5 +37,6 @@
         {% endif %}
     {% else %}
         <p>Vous devez etre connecté</p>
+        <a href="{{path("app_login")}}">Se connecter</a>
     {% endif %}
 {% endblock %}
